@@ -1,13 +1,14 @@
-const gsap = require('gsap');
-const {TweenMax, Linear, Power0, TimelineLite, TweenLite} = gsap;
-
-const duration = 1.5;
+import {TweenMax, Power0} from 'gsap';
+import {APPEAR_TIME, X_OFFSET} from '../constants';
 
 export default {
     showLabel(target, onComplete) {
     },
     show(target, scale, startingPos) {
-        TweenMax.fromTo(target, duration, {
+        console.log("SHOWING");
+        TweenMax.to(target, 0, {opacity: 0});
+        TweenMax.to(target, 0, {x: startingPos.x + X_OFFSET, top: startingPos.y})
+        TweenMax.fromTo(target, APPEAR_TIME, {
             opacity: 0,
             scale: 0.5,
         }, {
@@ -17,7 +18,7 @@ export default {
         });
     },
     hide(target) {
-        TweenMax.to(target, duration, {
+        TweenMax.to(target, APPEAR_TIME, {
             opacity: 0,
             scale: 0.5
         })

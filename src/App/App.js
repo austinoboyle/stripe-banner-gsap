@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import IconCarousel from '../IconCarousel/IconCarousel';
+import Button from '../Button/Button';
 import all_icons from './icons';
 import styles from './App.scss';
 
@@ -15,7 +16,11 @@ const icons = [...all_icons].map((icon, index) => {
 });
 
 const App = () => {
-    return <IconCarousel icons={icons} />
+    return (
+      <div>
+        <IconCarousel icons={icons} />
+      </div>
+    );
 }
 
 export default App;

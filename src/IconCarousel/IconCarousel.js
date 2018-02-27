@@ -6,7 +6,7 @@ import styles from './IconCarousel.scss';
 export default class IconCarousel extends Component {
     constructor(props) {
         super(props);
-        let main = new TimelineMax();
+        let main = new TimelineMax({paused: true});
         main.add("start");
         this.state = {
             numIconsLoaded: 0,
@@ -17,6 +17,7 @@ export default class IconCarousel extends Component {
     }
 
     checkAllLoaded() {
+        console.log('ICONS LOADED:', this.state.numIconsLoaded);
         if (this.state.numIconsLoaded === this.props.icons.length) {
             this.playAll()
         }

@@ -38,7 +38,7 @@ export default class Icon extends Component {
             {y: -BOUNCE_HEIGHT, ease: Power1.easeInOut}
         );
         this.bounce.timeScale(randomBetween(0.7, 1.3));
-        this.slide.timeScale(randomBetween(0.95, 1.05));
+        this.slide.timeScale(0.5);
         main.add(this.bounce, "start");
         main.add(this.slide, "start");
     }

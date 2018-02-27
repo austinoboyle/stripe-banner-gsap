@@ -16,6 +16,9 @@ export default class IconCarousel extends Component {
         };
     }
 
+    // This checks when all icons have loaded, and then starts the main timeline
+    // Not necessarily desirable behaviour for how the animation should look, just used
+    // to demonstrate the usage of the Transition callbacks functions
     checkAllLoaded() {
         console.log('ICONS LOADED:', this.state.numIconsLoaded);
         if (this.state.numIconsLoaded === this.props.icons.length) {
@@ -23,6 +26,7 @@ export default class IconCarousel extends Component {
         }
     }
     
+    // This is used as a callback for the IconContainer -> Transition:onEntered
     iconEntered() {
         this.setState({numIconsLoaded: this.state.numIconsLoaded + 1}, this.checkAllLoaded);
     }

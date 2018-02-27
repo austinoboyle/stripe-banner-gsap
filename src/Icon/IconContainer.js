@@ -8,7 +8,8 @@ const IconContainer = ({iconEntered, scale, startingPos, ...props}) => (
     <Transition
         // When it first mounts 
         onEnter={(el) => {animations.show(el, scale, startingPos)}}
-        // When onEnter has completedo
+        // When onEnter has completed, this triggers a callback that handles the
+        // starting of the main timeline
         onEntered={iconEntered}
         onExit={animations.hide}
         appear

@@ -7,47 +7,13 @@ import {randomBetween} from '../utils';
 
 export default class Icon extends Component {
     componentDidMount() {
-        const {startingPos, timeline} = this.props;
-
-        let initialSlide = new TimelineMax();
-        let repeatSlide = new TimelineMax({repeat: -1});
-        this.slide = new TimelineMax();
-
-        this.bounce = new TimelineMax({repeat: -1}).yoyo(true);
-        
-        initialSlide.fromTo(
-            this.el, 
-            SLIDE_TIME * (1 - startingPos.x/X_TOTAL_DISTANCE),
-            {x: startingPos.x + X_OFFSET, top: startingPos.y},
-            {x: X_MAX, ease: Power0.easeNone, top: startingPos.y}
-        );
-        repeatSlide.fromTo(
-            this.el,
-            SLIDE_TIME, 
-            {x: X_MIN, top: startingPos.y},
-            {x: X_MAX, top: startingPos.y, ease: Power0.easeNone}
-        );
-
-        this.slide.add([initialSlide, repeatSlide], "+=0", "sequence");
-
-        this.bounce.to(
-            this.el,
-            BOUNCE_TIME,
-            {y: -BOUNCE_HEIGHT, ease: Power1.easeInOut}
-        );
-        this.bounce.timeScale(randomBetween(0.7, 1.3));
-        this.slide.timeScale(0.5);
-        timeline.add([this.bounce, this.slide], "start");
     }
 
     render() {
-        const {title, image} = this.props;
+        const {title} = this.props;
         return (
-            <div 
-                className={styles.wrapper}
-                ref={(el) => {this.el = el;}}
-                style={{backgroundImage: `url(${image})`}}
-            >
+            <div className={styles.wrapper}>
+            Icon
                 <span className={styles.label}>{title}</span>
             </div>
         );

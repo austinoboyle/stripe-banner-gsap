@@ -4,20 +4,8 @@ import animations from './animations';
 import Icon from './Icon';
 import {APPEAR_TIME} from '../constants';
 
-const IconContainer = ({iconEntered, scale, startingPos, ...props}) => (
-    <Transition
-        // When it first mounts 
-        onEnter={(el) => {animations.show(el, scale, startingPos)}}
-        // When onEnter has completed, this triggers a callback that handles the
-        // starting of the main timeline
-        onEntered={iconEntered}
-        onExit={animations.hide}
-        appear
-        in
-        timeout={APPEAR_TIME * 1000}
-    >
-        <Icon {...props} startingPos={startingPos}/>
-    </Transition>
+const IconContainer = ({...props}) => (
+    <Icon {...props} /> 
 );
 
 export default IconContainer;

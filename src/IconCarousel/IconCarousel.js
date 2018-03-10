@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import IconContainer from '../Icon/IconContainer';
-import {TweenMax, Linear, Power0, TimelineMax, TweenLite} from 'gsap';
+import {TimelineMax} from 'gsap';
 import styles from './IconCarousel.scss';
 
 export default class IconCarousel extends Component {

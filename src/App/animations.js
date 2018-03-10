@@ -20,16 +20,6 @@ export default  {
                 opacity: 0,
                 height: 0,
             });
-    }, slide(target) {
-        return TweenMax
-            .fromTo(target,duration,{
-                x: 0,
-                y: 0
-            }, {
-                x: 100,
-                y: 100
-            }
-            )
     }
 };
 

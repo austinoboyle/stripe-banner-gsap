@@ -5,9 +5,8 @@ export default {
     showLabel(target, onComplete) {
     },
     show(target, scale, startingPos) {
-        console.log("SHOWING");
         TweenMax.to(target, 0, {opacity: 0});
-        TweenMax.to(target, 0, {x: startingPos.x + X_OFFSET, top: startingPos.y})
+        TweenMax.to(target, 0, {x: startingPos.x, top: startingPos.y})
         TweenMax.fromTo(target, APPEAR_TIME, {
             opacity: 0,
             scale: 0.5,

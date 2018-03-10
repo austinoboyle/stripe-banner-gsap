@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import styles from './Icon.scss';
 import animations from './animations';
 import {Power0, Power1, TimelineLite, TimelineMax} from 'gsap';
-import {X_MAX, X_MIN, X_OFFSET, X_TOTAL_DISTANCE, SLIDE_TIME, BOUNCE_HEIGHT, BOUNCE_TIME} from '../constants';
+import {X_MAX, X_MIN, X_TOTAL_DISTANCE, SLIDE_TIME, BOUNCE_HEIGHT, BOUNCE_TIME, X_OFFSET} from '../constants';
 import {randomBetween} from '../utils';
 
 export default class Icon extends Component {
@@ -17,8 +17,8 @@ export default class Icon extends Component {
         
         initialSlide.fromTo(
             this.el, 
-            SLIDE_TIME * (1 - startingPos.x/X_TOTAL_DISTANCE),
-            {x: startingPos.x + X_OFFSET, top: startingPos.y},
+            SLIDE_TIME * (1 - (startingPos.x + X_OFFSET)/X_TOTAL_DISTANCE ),
+            {x: startingPos.x, top: startingPos.y},
             {x: X_MAX, ease: Power0.easeNone, top: startingPos.y}
         );
         repeatSlide.fromTo(

@@ -7,8 +7,7 @@ import {randomBetween} from '../utils';
 
 export default class Icon extends Component {
     componentDidMount() {
-        const {title, initialProgress, startingPos} = this.props;
-        const {main} = this.props.tls;
+        const {startingPos, timeline} = this.props;
 
         let initialSlide = new TimelineMax();
         let repeatSlide = new TimelineMax({repeat: -1});
@@ -29,8 +28,7 @@ export default class Icon extends Component {
             {x: X_MAX, top: startingPos.y, ease: Power0.easeNone}
         );
 
-        this.slide.add(initialSlide);
-        this.slide.add(repeatSlide);
+        this.slide.add([initialSlide, repeatSlide], "+=0", "sequence");
 
         this.bounce.to(
             this.el,
@@ -39,8 +37,7 @@ export default class Icon extends Component {
         );
         this.bounce.timeScale(randomBetween(0.7, 1.3));
         this.slide.timeScale(0.5);
-        main.add(this.bounce, "start");
-        main.add(this.slide, "start");
+        timeline.add([this.bounce, this.slide], "start");
     }
 
     render() {

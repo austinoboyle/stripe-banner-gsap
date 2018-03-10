@@ -10,9 +10,7 @@ export default class IconCarousel extends Component {
         main.add("start");
         this.state = {
             numIconsLoaded: 0,
-            tls: {
-                main
-            }
+            timeline: main
         };
     }
 
@@ -20,9 +18,8 @@ export default class IconCarousel extends Component {
     // Not necessarily desirable behaviour for how the animation should look, just used
     // to demonstrate the usage of the Transition callbacks functions
     checkAllLoaded() {
-        console.log('ICONS LOADED:', this.state.numIconsLoaded);
         if (this.state.numIconsLoaded === this.props.icons.length) {
-            this.playAll()
+            this.state.timeline.play()
         }
     }
     
@@ -31,20 +28,16 @@ export default class IconCarousel extends Component {
         this.setState({numIconsLoaded: this.state.numIconsLoaded + 1}, this.checkAllLoaded);
     }
 
-    playAll() {
-        this.state.tls.main.play();
-    }
-
     render() {
         const {icons} = this.props;
-        const {main} = this.state.tls;
+        const {timeline} = this.state;
         return (
             <div className={styles.wrapper}>
                 {icons.map((icon, index) => (
                     <IconContainer 
                         image={icon.image}
                         title={icon.title}
-                        tls={{main}}
+                        timeline={timeline}
                         iconEntered={() => this.iconEntered()} 
                         startingPos={{x: icon.x, y: icon.y}}
                         scale={icon.s}

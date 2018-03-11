@@ -4,7 +4,7 @@ import animations from './animations';
 import Icon from './Icon';
 import {APPEAR_TIME} from '../constants';
 
-const IconContainer = ({iconEntered, scale, startingPos, ...props}) => (
+const IconContainer = ({iconEntered, scale, startingPos,...props}) => (
     <Transition
         // When it first mounts 
         onEnter={(el) => {animations.show(el, scale, startingPos)}}

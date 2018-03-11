@@ -1,5 +1,5 @@
 // Total time moving from X_MIN to X_MAX in carousel
-export const SLIDE_TIME = 90;
+export const SLIDE_TIME = 180;
 // 'Beginning' of the slide.  Start this many pixels left of screen
 export const X_OFFSET = 70;
 export const Y_OFFSET = 80;

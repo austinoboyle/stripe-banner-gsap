@@ -1,43 +1,15 @@
 import React, {Component} from 'react';
 import styles from './Icon.scss';
 import animations from './animations';
-import {Power0, Power1, TimelineLite, TimelineMax} from 'gsap';
-import {X_MAX, X_MIN, X_TOTAL_DISTANCE, SLIDE_TIME, BOUNCE_HEIGHT, BOUNCE_TIME, X_OFFSET} from '../constants';
-import {randomBetween} from '../utils';
 
 export default class Icon extends Component {
     componentDidMount() {
         const {startingPos, timeline} = this.props;
 
-        let initialSlide = new TimelineMax();
-        let repeatSlide = new TimelineMax({repeat: -1});
-        this.slide = new TimelineMax();
-
-        this.bounce = new TimelineMax({repeat: -1}).yoyo(true);
-        
-        initialSlide.fromTo(
-            this.el, 
-            SLIDE_TIME * (1 - (startingPos.x + X_OFFSET)/X_TOTAL_DISTANCE ),
-            {x: startingPos.x, top: startingPos.y},
-            {x: X_MAX, ease: Power0.easeNone, top: startingPos.y}
-        );
-        repeatSlide.fromTo(
-            this.el,
-            SLIDE_TIME, 
-            {x: X_MIN, top: startingPos.y},
-            {x: X_MAX, top: startingPos.y, ease: Power0.easeNone}
-        );
-
-        this.slide.add([initialSlide, repeatSlide], "+=0", "sequence");
-
-        this.bounce.to(
-            this.el,
-            BOUNCE_TIME,
-            {y: -BOUNCE_HEIGHT, ease: Power1.easeInOut}
-        );
-        this.bounce.timeScale(randomBetween(0.7, 1.3));
-        this.slide.timeScale(0.5);
-        timeline.add([this.bounce, this.slide], "start");
+        timeline.add([
+            animations.slide(this.icon, startingPos),
+            animations.bounce(this.icon)
+        ], "start");
     }
 
     render() {
@@ -45,7 +17,7 @@ export default class Icon extends Component {
         return (
             <div 
                 className={styles.wrapper}
-                ref={(el) => {this.el = el;}}
+                ref={(el) => {this.icon = el;}}
                 style={{backgroundImage: `url(${image})`}}
             >
                 <span className={styles.label}>{title}</span>
